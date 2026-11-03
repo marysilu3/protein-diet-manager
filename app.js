@@ -24,6 +24,29 @@ const foods=[
 ["Tomato soup (plain)","തക്കാളി സൂപ്പ്","1 bowl (200 ml)",2,"Tomato, water and mild seasoning, blended and strained; low in protein unless fortified with dal, milk or another protein food."],
 ["Curd-based moru soup","മോര് സൂപ്പ്","1 bowl (200 ml)",3,"Thin buttermilk with curry leaves and mild seasoning; approximate value depends on curd concentration."],
 ["Soy and vegetable soup","സോയ പച്ചക്കറി സൂപ്പ്","1 bowl (200 ml)",10,"Soft cooked soy chunks with vegetables in broth; chop or mince soy well and adjust texture to swallowing instructions."]
+,
+["Rice kanji (plain)","അരി കഞ്ഞി","1 bowl (200 ml)",1.5,"Rice cooked with plenty of water; mostly carbohydrate and low in protein. Estimate varies with rice quantity and thickness."],
+["Rice kanji with green gram","ചെറുപയർ ചേർത്ത കഞ്ഞി","1 bowl (250 ml)",6,"Rice kanji served with well-cooked green gram; protein comes mainly from the green gram. Mash well if a soft texture is needed."],
+["Rice kanji with dal","പരിപ്പ് കഞ്ഞി","1 bowl (250 ml)",5,"Rice cooked with cooked dal; protein depends on the amount of dal added."],
+["Rice kanji with chicken","കോഴി ചേർത്ത കഞ്ഞി","1 bowl (250 ml)",12,"Soft rice porridge with finely shredded, fully cooked boneless chicken; remove bones and adjust texture as advised."],
+["Rice kanji with fish","മീൻ ചേർത്ത കഞ്ഞി","1 bowl (250 ml)",10,"Rice porridge with thoroughly deboned cooked fish; check carefully for small bones."],
+["Oats porridge","ഓട്സ് കഞ്ഞി","1 bowl (200 ml)",5,"Oats cooked until soft with water or milk. Protein is higher when prepared with milk."],
+["Broken wheat porridge","ഗോതമ്പ് നുറുക്ക് കഞ്ഞി","1 bowl (200 ml)",4,"Broken wheat cooked until soft; value depends on portion and whether milk is added."],
+["Ragi porridge (water-based)","റാഗി കഞ്ഞി","1 bowl (200 ml)",2,"Ragi flour cooked thoroughly with water; relatively low in protein. Milk can increase the protein content."],
+["Ragi porridge with milk","പാൽ ചേർത്ത റാഗി കഞ്ഞി","1 bowl (200 ml)",5,"Ragi flour cooked with milk; estimate assumes a meaningful quantity of milk."],
+["Puttu with kadala curry","കടലക്കറിയോടുകൂടിയ പുട്ട്","1 serving",13,"One medium puttu with a serving of cooked black chickpea curry; amount of kadala determines protein."],
+["Green gram curry","ചെറുപയർ കറി","100 g",7,"Well-cooked whole green gram with mild seasoning; protein estimate is for the cooked beans and gravy together."],
+["Black chickpea curry","കടല കറി","100 g",8,"Cooked black chickpeas in curry; estimate varies with chickpea-to-gravy ratio."],
+["Boiled sardine","മത്തി വേവിച്ചത്","100 g",20,"Cooked sardine flesh; remove bones carefully and use the edible portion for weighing."],
+["Mackerel curry (fish portion)","അയല കറി (മീൻ കഷണം)","100 g",20,"Cooked edible mackerel portion; curry gravy alone contains much less protein."],
+["Tuna, cooked","ചൂര മീൻ വേവിച്ചത്","100 g",25,"Cooked edible tuna flesh; value varies by species and cooking method."],
+["Egg omelette","മുട്ട ഓംലെറ്റ്","1 egg",6.5,"One whole egg cooked as an omelette; added vegetables contribute little protein."],
+["Egg curry (one egg)","മുട്ട കറി","1 egg",6.3,"One whole cooked egg with curry gravy; protein mainly comes from the egg."],
+["Milk powder","പാൽപ്പൊടി","2 tablespoons (about 20 g)",5,"Protein varies by brand; check the nutrition label. Can be mixed into porridge only if suitable for the person's diet."],
+["Curd rice","തൈര് ചോറ്","1 small bowl (200 g)",5,"Cooked rice mixed with curd; protein varies with the amount and thickness of curd."],
+["Idiyappam with milk","പാലൊഴിച്ച ഇടിയപ്പം","1 serving",7,"Two small idiyappam with a serving of milk; estimate depends on milk quantity."],
+["Avial","അവിയൽ","100 g",2.5,"Mixed vegetables with coconut and curd; generally a low-protein side dish."],
+["Olan","ഓലൻ","100 g",2,"Ash gourd and cowpeas cooked with coconut milk; protein depends on the quantity of cowpeas."]
 ];
 const $=id=>document.getElementById(id);
 const today=()=>new Date().toISOString().slice(0,10);
