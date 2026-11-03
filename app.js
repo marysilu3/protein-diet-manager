@@ -53,7 +53,7 @@ const foods=[
 ["Mutton, cooked (lean pieces)","മട്ടൻ വേവിച്ചത്","100 g",25,"Approximate protein for edible cooked meat; remove bones before weighing. Actual value varies by cut and fat."],
 ["Mutton curry (meat and gravy)","മട്ടൻ കറി","1 serving (about 150 g)",20,"Approximate value assuming a moderate portion of edible mutton pieces; gravy alone contains much less protein."],
 ["Mutton soup (with meat pieces)","മട്ടൻ സൂപ്പ്","1 bowl (200 ml)",10,"Estimate assumes some cooked boneless mutton pieces in the soup; strained broth alone is much lower in protein."],
-["Whey protein powder","വേ പ്രോട്ടീൻ പൊടി","1 scoop (about 30 g)",24,"Illustrative estimate only. Check the product label because protein per scoop varies by brand. Use only after the treating doctor or dietitian confirms it is suitable, especially with kidney disease or post-surgery restrictions."]
+["Ensure Diabetes Care","എൻഷ്വർ ഡയബറ്റിസ് കെയർ","1 level scoop (about 10.4 g powder)",2.2,"Approximate protein based on the standard 5-scoop (52.1 g) serving. Check your tin label and scoop size; formulation can vary."]
 ];
 const $=id=>document.getElementById(id);
 const today=()=>new Date().toISOString().slice(0,10);
@@ -70,6 +70,22 @@ if(data.profiles){
 }
 let editingId=null;
 function save(){localStorage.setItem("proteinManager",JSON.stringify(data))}
+// Correct today's earlier generic powder log to Ensure Diabetes Care if it was selected.
+(function migrateTodaysEnsureLog(){
+ const todayKey=key();
+ const todays=data.logs[todayKey];
+ if(!Array.isArray(todays))return;
+ let changed=false;
+ todays.forEach(e=>{
+  if(e.name==="Whey protein powder"){
+   e.name="Ensure Diabetes Care";
+   e.unit="1 level scoop (about 10.4 g powder)";
+   e.protein=Number((Number(e.qty||1)*2.2).toFixed(1));
+   changed=true;
+  }
+ });
+ if(changed)save();
+})();
 function profile(){return data.profiles.find(p=>p.id===data.active)||data.profiles[0]}
 function bmi(p){return p.height>0&&p.weight>0? Number((p.weight/((p.height/100)**2)).toFixed(1)):null}
 function suggested(p){if(p.target)return Number(p.target);let rate=p.type==="recovery"?1.2:p.age>=65?1.0:0.8;return Math.round(p.weight*rate)}
