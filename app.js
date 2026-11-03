@@ -1,5 +1,5 @@
 const foods=[
-["Egg, whole","മുട്ട","1 large egg",6.3],["Egg white","മുട്ടയുടെ വെള്ള","1 large egg white",3.6],
+["Chicken egg, whole","കോഴിമുട്ട","1 large egg (about 50 g)",6.3],["Duck egg, whole","താറാവുമുട്ട","1 medium/large egg (about 70 g)",9.0],["Egg white","മുട്ടയുടെ വെള്ള","1 large egg white",3.6],
 ["Cow's milk","പാൽ","100 ml",3.3],["Curd / yogurt","തൈര്","100 g",3.5],["Paneer","പനീർ","100 g",18],
 ["Fish, cooked","മീൻ (വേവിച്ചത്)","100 g",22],["Chicken, cooked","കോഴി (വേവിച്ചത്)","100 g",27],
 ["Dal, cooked","പരിപ്പ് (വേവിച്ചത്)","100 g",7.5],["Chickpeas, cooked","കടല (വേവിച്ചത്)","100 g",8.9],
