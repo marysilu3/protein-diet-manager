@@ -1,10 +1,10 @@
-const CACHE = "protein-manager-v16";
+const CACHE = "protein-manager-v17";
 
 const FILES = [
   "./",
   "./index.html",
   "./style.css?v=5",
-  "./app.js?v=13",
+  "./app.js?v=14",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png"
