@@ -48,6 +48,7 @@ const foods=[
 ["Avial","അവിയൽ","100 g",2.5,"Mixed vegetables with coconut and curd; generally a low-protein side dish."],
 ["Olan","ഓലൻ","100 g",2,"Ash gourd and cowpeas cooked with coconut milk; protein depends on the quantity of cowpeas."],
 ["Appam","അപ്പം","1 medium",2,"Approximate value; protein varies with size and batter. Usually low in protein."],
+["Idiyappam","ഇടിയപ്പം","2 medium pieces",3,"Approximate value for plain rice-flour idiyappam; protein varies with size and recipe. Usually low in protein."],
 ["Pathiri","പത്തിരി","1 medium",2,"Approximate value; protein varies with size and recipe. Usually low in protein."],
 ["Mutton, cooked (lean pieces)","മട്ടൻ വേവിച്ചത്","100 g",25,"Approximate protein for edible cooked meat; remove bones before weighing. Actual value varies by cut and fat."],
 ["Mutton curry (meat and gravy)","മട്ടൻ കറി","1 serving (about 150 g)",20,"Approximate value assuming a moderate portion of edible mutton pieces; gravy alone contains much less protein."],
