@@ -1,4 +1,4 @@
-const CACHE = "protein-manager-v6";
+const CACHE = "protein-manager-v7";
 
 const FILES = [
   "./",
