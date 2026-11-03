@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#176b57">
+<title>Protein Diet Manager</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">P+</div><div><h1>Protein Diet Manager</h1><p>Food • Meals • Daily protein</p></div></div>
+  <button id="langBtn" class="small secondary">മലയാളം</button>
+</header>
+<main>
+  <section class="profilebar card">
+    <div><label for="profileSelect" data-en="Active profile" data-ml="സജീവ പ്രൊഫൈൽ">Active profile</label>
+    <select id="profileSelect"></select></div>
+    <button id="addProfileBtn" class="secondary" data-en="+ Add person" data-ml="+ വ്യക്തിയെ ചേർക്കുക">+ Add person</button>
+  </section>
+
+  <section class="grid two">
+    <article class="card">
+      <div class="section-head"><h2 data-en="Profile details" data-ml="പ്രൊഫൈൽ വിവരങ്ങൾ">Profile details</h2><button id="editProfileBtn" class="textbtn" data-en="Edit" data-ml="തിരുത്തുക">Edit</button></div>
+      <div id="profileDetails"></div>
+    </article>
+    <article class="card target-card">
+      <p class="eyebrow" data-en="DAILY PROTEIN TARGET" data-ml="ദിവസേനയുള്ള പ്രോട്ടീൻ ലക്ഷ്യം">DAILY PROTEIN TARGET</p>
+      <div class="big-number"><span id="targetValue">0</span><small>g</small></div>
+      <p id="targetNote" class="muted"></p>
+      <button id="targetBtn" class="secondary" data-en="Set / adjust target" data-ml="ലക്ഷ്യം ക്രമീകരിക്കുക">Set / adjust target</button>
+    </article>
+  </section>
+
+  <section class="card">
+    <div class="section-head"><h2 data-en="Today's intake" data-ml="ഇന്നത്തെ ഭക്ഷണ രേഖ">Today's intake</h2><span id="todayDate" class="muted"></span></div>
+    <div class="progress-wrap"><div class="progress"><div id="progressFill"></div></div><div class="progress-label"><strong><span id="consumed">0</span> g</strong><span><span id="remaining">0</span> g remaining</span></div></div>
+    <div id="mealSummary" class="meal-summary"></div>
+  </section>
+
+  <section class="grid two">
+    <article class="card">
+      <h2 data-en="Add food intake" data-ml="കഴിച്ച ഭക്ഷണം ചേർക്കുക">Add food intake</h2>
+      <form id="intakeForm">
+        <label data-en="Food" data-ml="ഭക്ഷണം">Food</label>
+        <select id="foodSelect" required></select>
+        <div class="grid two compact">
+          <div><label for="quantity" data-en="Quantity" data-ml="അളവ്">Quantity</label><input id="quantity" type="number" min="0.1" step="0.1" value="1" required></div>
+          <div><label for="unit" data-en="Unit" data-ml="യൂണിറ്റ്">Unit</label><input id="unit" disabled></div>
+        </div>
+        <p class="estimate">Estimated protein: <strong><span id="estimate">0</span> g</strong></p>
+        <label for="meal" data-en="Meal" data-ml="ഭക്ഷണ സമയം">Meal</label>
+        <select id="meal"><option>Breakfast</option><option>Mid-morning</option><option>Lunch</option><option>Evening</option><option>Dinner</option><option>Other</option></select>
+        <button class="primary" type="submit" data-en="Add to today's chart" data-ml="ഇന്നത്തെ രേഖയിൽ ചേർക്കുക">Add to today's chart</button>
+      </form>
+    </article>
+    <article class="card">
+      <h2 data-en="Food protein list" data-ml="പ്രോട്ടീൻ അടങ്ങിയ ഭക്ഷണങ്ങൾ">Food protein list</h2>
+      <input id="foodSearch" placeholder="Search food / ഭക്ഷണം തിരയുക">
+      <div id="foodList" class="food-list"></div>
+      <p class="tiny muted">Values are estimates. Actual protein varies by food type, brand, recipe and cooked/raw weight.</p>
+    </article>
+  </section>
+
+  <section class="card">
+    <div class="section-head"><h2 data-en="Today's food chart" data-ml="ഇന്നത്തെ ഭക്ഷണ ചാർട്ട്">Today's food chart</h2><button id="clearDayBtn" class="textbtn">Clear today</button></div>
+    <div id="intakeRows"></div>
+  </section>
+
+  <section class="grid two">
+    <article class="card">
+      <h2 data-en="Meal plan ideas" data-ml="ഭക്ഷണ പദ്ധതി ആശയങ്ങൾ">Meal plan ideas</h2>
+      <p class="muted">Illustrative Kerala-style choices. Adjust portions and texture to the person's medical and post-surgery instructions.</p>
+      <div class="plan">
+        <h3>Breakfast</h3><p>2 eggs + milk / curd, or puttu with kadala curry.</p>
+        <h3>Lunch</h3><p>Rice + fish curry or chicken + dal + cooked vegetables.</p>
+        <h3>Evening</h3><p>Milk, curd, or a small portion of roasted gram.</p>
+        <h3>Dinner</h3><p>Idli / dosa with sambar, or soft rice with fish / dal as tolerated.</p>
+      </div>
+    </article>
+    <article class="card">
+      <h2 data-en="Last 7 days" data-ml="കഴിഞ്ഞ 7 ദിവസം">Last 7 days</h2>
+      <div id="weeklyChart" class="bars"></div>
+      <p class="tiny muted">Only days with logged food are shown. Intake is saved on this device.</p>
+    </article>
+  </section>
+
+  <section class="card notice">
+    <strong>Health note</strong>
+    <p>This app is a food-recording aid, not a medical prescription. For surgery recovery, kidney disease, abnormal creatinine, swallowing difficulty or a prescribed special diet, confirm the protein target and food choices with the treating doctor or dietitian. Food values are approximate.</p>
+  </section>
+</main>
+
+<dialog id="profileDialog">
+<form method="dialog" id="profileForm">
+  <h2 id="profileDialogTitle">Add person</h2>
+  <label>Name</label><input id="pName" required maxlength="40">
+  <div class="grid two compact"><div><label>Age (years)</label><input id="pAge" type="number" min="1" max="120" value="66"></div><div><label>Weight (kg)</label><input id="pWeight" type="number" min="1" max="400" step="0.1" value="50.75"></div></div>
+  <label>Profile type</label><select id="pType"><option value="recovery">Post-surgery recovery</option><option value="general">General adult</option><option value="older">Older adult</option><option value="custom">Custom / other</option></select>
+  <label>Kidney status (for reminder only)</label><select id="pKidney"><option value="unknown">Not known</option><option value="normal">No known kidney problem</option><option value="issue">Kidney problem / abnormal tests</option></select>
+  <label>Daily protein target (g) — optional</label><input id="pTarget" type="number" min="1" max="300" placeholder="Leave blank for suggested estimate">
+  <div class="dialog-actions"><button type="button" class="secondary" id="cancelProfile">Cancel</button><button class="primary" type="submit">Save profile</button></div>
+</form>
+</dialog>
+
+<dialog id="targetDialog">
+<form method="dialog" id="targetForm">
+<h2>Adjust daily protein target</h2>
+<label>Target (grams per day)</label><input id="newTarget" type="number" min="1" max="300" step="1" required>
+<p class="tiny muted">Use a target advised by the doctor/dietitian, especially after surgery or if kidney function is reduced.</p>
+<div class="dialog-actions"><button type="button" class="secondary" id="cancelTarget">Cancel</button><button class="primary" type="submit">Save target</button></div>
+</form>
+</dialog>
+<footer>Protein Diet Manager · First version · Data stays in this browser on this device</footer>
+<script src="app.js"></script>
+</body>
+</html>
