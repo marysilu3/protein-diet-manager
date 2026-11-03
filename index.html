@@ -206,10 +206,10 @@
 </main>
 
 <dialog id="profileDialog">
-<form method="dialog" id="profileForm">
+<form id="profileForm">
   <h2 id="profileDialogTitle">Add person</h2>
   <label>Name</label><input id="pName" required maxlength="40">
-  <div class="grid two compact"><div><label>Age (years)</label><input id="pAge" type="number" min="1" max="120" value="66"></div><div><label>Height (cm)</label><input id="pHeight" type="number" min="50" max="250" step="0.1" value="162" required></div><div><label>Weight (kg)</label><input id="pWeight" type="number" min="1" max="400" step="0.1" value="50.75" required></div></div>
+  <div class="grid two compact"><div><label>Age (years)</label><input id="pAge" type="number" min="1" max="120" value="66"></div><div><label>Height (cm)</label><input id="pHeight" type="number" min="50" max="250" step="any" inputmode="decimal" placeholder="e.g. 162" value="162" required></div><div><label>Weight (kg)</label><input id="pWeight" type="number" min="1" max="400" step="any" inputmode="decimal" value="50.75" required></div></div>
   <label>Profile type</label><select id="pType"><option value="recovery">Post-surgery recovery</option><option value="general">General adult</option><option value="older">Older adult</option><option value="custom">Custom / other</option></select>
   <label>Kidney status (for reminder only)</label><select id="pKidney"><option value="unknown">Not known</option><option value="normal">No known kidney problem</option><option value="issue">Kidney problem / abnormal tests</option></select>
   <label>Daily protein target (g) — optional</label><input id="pTarget" type="number" min="1" max="300" placeholder="Leave blank for suggested estimate">
@@ -226,6 +226,6 @@
 </form>
 </dialog>
 <footer>Protein Diet Manager · First version · Data stays in this browser on this device</footer>
-<script src="app.js?v=6"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>
