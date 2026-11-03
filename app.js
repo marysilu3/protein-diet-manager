@@ -9,6 +9,21 @@ const foods=[
 ["Cooked rice","ചോറ്","100 g",2.7],["Puttu","പുട്ട്","1 medium piece",4],
 ["Idli","ഇഡ്ഡലി","1 medium",2],["Dosa","ദോശ","1 medium",3],
 ["Sambar","സാമ്പാർ","100 ml",2.5],["Almonds","ബദാം","30 g",6.3]
+,
+["Chicken clear soup (with chicken pieces)","കോഴി സൂപ്പ്","1 bowl (200 ml)",12,"Chicken pieces simmered with water, ginger, garlic and pepper; protein mainly comes from the chicken pieces. Strain only if advised; clear broth alone has much less protein."],
+["Chicken bone broth (strained)","കോഴി എല്ല് സൂപ്പ്","1 bowl (200 ml)",2,"Slow-simmered chicken bones, water and mild seasoning; strained broth is usually low in protein. It is not equivalent to a serving of chicken meat."],
+["Thick chicken soup","കട്ടിയുള്ള കോഴി സൂപ്പ്","1 bowl (200 ml)",15,"Chicken pieces with a little cooked carrot and potato, blended or finely chopped; value depends on how much chicken is included."],
+["Fish soup (with fish pieces)","മീൻ സൂപ്പ്","1 bowl (200 ml)",11,"Boneless fish pieces simmered with water, ginger and mild spices; remove all bones carefully. Broth without fish pieces contains much less protein."],
+["Egg drop soup","മുട്ട സൂപ്പ്","1 bowl (200 ml)",7,"One egg stirred into hot seasoned broth; cook the egg fully. Protein estimate assumes one whole egg in the bowl."],
+["Dal soup","പരിപ്പ് സൂപ്പ്","1 bowl (200 ml)",7,"Cooked moong dal or masoor dal thinned with water and blended; protein varies with dal thickness and quantity."],
+["Green gram soup","ചെറുപയർ സൂപ്പ്","1 bowl (200 ml)",8,"Well-cooked green gram with water and mild cumin; blend for a smooth texture if needed. Estimate assumes a generous portion of cooked beans."],
+["Black chickpea soup","കടല സൂപ്പ്","1 bowl (200 ml)",8,"Well-soaked and pressure-cooked black chickpeas blended with cooking liquid; protein comes from the chickpeas, not just the broth."],
+["Mixed vegetable soup","പച്ചക്കറി സൂപ്പ്","1 bowl (200 ml)",2,"Carrot, beans, pumpkin and other vegetables simmered and blended; generally low in protein unless pulses, milk or chicken are added."],
+["Mushroom soup (milk-based)","കൂൺ സൂപ്പ്","1 bowl (200 ml)",4,"Mushrooms cooked with milk and mild seasoning; estimate varies with milk quantity. Cream alone does not add much protein."],
+["Lentil and pumpkin soup","മത്തങ്ങ പരിപ്പ് സൂപ്പ്","1 bowl (200 ml)",6,"Pumpkin cooked with dal and blended; protein depends on the dal-to-pumpkin ratio."],
+["Tomato soup (plain)","തക്കാളി സൂപ്പ്","1 bowl (200 ml)",2,"Tomato, water and mild seasoning, blended and strained; low in protein unless fortified with dal, milk or another protein food."],
+["Curd-based moru soup","മോര് സൂപ്പ്","1 bowl (200 ml)",3,"Thin buttermilk with curry leaves and mild seasoning; approximate value depends on curd concentration."],
+["Soy and vegetable soup","സോയ പച്ചക്കറി സൂപ്പ്","1 bowl (200 ml)",10,"Soft cooked soy chunks with vegetables in broth; chop or mince soy well and adjust texture to swallowing instructions."]
 ];
 const $=id=>document.getElementById(id);
 const today=()=>new Date().toISOString().slice(0,10);
@@ -38,7 +53,7 @@ function kidneyName(k){return ({unknown:"Not known",normal:"No known problem",is
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function populateFood(){ $("foodSelect").innerHTML=foods.map((f,i)=>`<option value="${i}">${f[0]} — ${f[3]}g / ${f[2]}</option>`).join("");updateEstimate()}
 function updateEstimate(){let f=foods[+$("foodSelect").value]||foods[0];$("unit").value=f[2];$("estimate").textContent=(f[3]*Number($("quantity").value||0)).toFixed(1)}
-function renderFoodList(){let q=$("foodSearch").value.toLowerCase();$("foodList").innerHTML=foods.filter(f=>(f[0]+" "+f[1]).toLowerCase().includes(q)).map(f=>`<div class="food-item"><span>${esc(f[0])}<small>${esc(f[1])} · ${f[2]}</small></span><strong>${f[3]} g</strong></div>`).join("")}
+function renderFoodList(){let q=$("foodSearch").value.toLowerCase();$("foodList").innerHTML=foods.filter(f=>(f[0]+" "+f[1]+" "+(f[4]||"")).toLowerCase().includes(q)).map(f=>`<div class="food-item"><span>${esc(f[0])}<small>${esc(f[1])} · ${esc(f[2])}</small>${f[4]?`<small class="food-detail">${esc(f[4])}</small>`:""}</span><strong>${f[3]} g</strong></div>`).join("")}
 function renderWeek(){let out="";let max=1;let vals=[];for(let i=6;i>=0;i--){let d=new Date();d.setDate(d.getDate()-i);let k=`${data.active}_${d.toISOString().slice(0,10)}`;let v=(data.logs[k]||[]).reduce((s,e)=>s+e.protein,0);vals.push({label:d.toLocaleDateString(undefined,{weekday:"short"}),v}) ;max=Math.max(max,v)}$("weeklyChart").innerHTML=vals.map(x=>`<div class="bar-col"><div class="bar" style="height:${Math.max(3,x.v/max*105)}px" title="${x.v.toFixed(1)} g"></div>${x.v?x.v.toFixed(0)+"g":""}<br>${x.label}</div>`).join("")}
 function removeEntry(i){let a=entries();a.splice(i,1);data.logs[key()]=a;save();render()}
 $("profileSelect").addEventListener("change",e=>{data.active=e.target.value;save();render()});
