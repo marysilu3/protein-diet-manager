@@ -54,10 +54,16 @@ let data=JSON.parse(localStorage.getItem("proteinManager")||"null")||{
  profiles:[{id:"father",name:"Father",age:66,weight:50.75,type:"recovery",kidney:"unknown",target:65}],
  active:"father",logs:{},language:"en"
 };
-if(data.profiles){data.profiles.forEach(p=>{if(p.id==="father"&&!p.height)p.height=162;});}\nlet editingId=null;
+if(data.profiles){
+ data.profiles.forEach(p=>{
+  if(p.id==="father"&&!p.height)p.height=162;
+  if(p.height&&p.weight)p.bmi=Number((p.weight/((p.height/100)**2)).toFixed(1));
+ });
+ save();
+}\nlet editingId=null;
 function save(){localStorage.setItem("proteinManager",JSON.stringify(data))}
 function profile(){return data.profiles.find(p=>p.id===data.active)||data.profiles[0]}
-function bmi(p){return p.height>0&&p.weight>0? p.weight/((p.height/100)**2):null}\nfunction suggested(p){if(p.target)return Number(p.target);let rate=p.type==="recovery"?1.2:p.age>=65?1.0:0.8;return Math.round(p.weight*rate)}
+function bmi(p){return p.height>0&&p.weight>0? Number((p.weight/((p.height/100)**2)).toFixed(1)):null}\nfunction suggested(p){if(p.target)return Number(p.target);let rate=p.type==="recovery"?1.2:p.age>=65?1.0:0.8;return Math.round(p.weight*rate)}
 function key(){return `${data.active}_${today()}`}
 function entries(){return data.logs[key()]||[]}
 function total(){return entries().reduce((s,e)=>s+e.protein,0)}
@@ -87,7 +93,7 @@ $("addProfileBtn").onclick=()=>openProfile();
 $("editProfileBtn").onclick=()=>openProfile(profile());
 function openProfile(p=null){editingId=p?.id||null;$("profileDialogTitle").textContent=p?"Edit profile":"Add person";$("pName").value=p?.name||"";$("pAge").value=p?.age||30;$("pWeight").value=p?.weight||65;$("pHeight").value=p?.height||"";$("pType").value=p?.type||"general";$("pKidney").value=p?.kidney||"unknown";$("pTarget").value=p?.target||"";$("profileDialog").showModal()}
 $("cancelProfile").onclick=()=>$("profileDialog").close();
-$("profileForm").onsubmit=e=>{e.preventDefault();let obj={id:editingId||("p"+Date.now()),name:$("pName").value.trim(),age:Number($("pAge").value),weight:Number($("pWeight").value),height:Number($("pHeight").value),type:$("pType").value,kidney:$("pKidney").value,target:$("pTarget").value?Number($("pTarget").value):null};if(editingId){let i=data.profiles.findIndex(p=>p.id===editingId);data.profiles[i]=obj}else{data.profiles.push(obj);data.active=obj.id}save();$("profileDialog").close();render()};
+$("profileForm").onsubmit=e=>{e.preventDefault();const h=Number($("pHeight").value),w=Number($("pWeight").value);if(!Number.isFinite(h)||h<50||h>250||!Number.isFinite(w)||w<=0){alert("Please enter a valid height (50–250 cm) and weight.");return;}let obj={id:editingId||("p"+Date.now()),name:$("pName").value.trim(),age:Number($("pAge").value),weight:Number($("pWeight").value),height:Number($("pHeight").value),bmi:Number((Number($("pWeight").value)/((Number($("pHeight").value)/100)**2)).toFixed(1)),type:$("pType").value,kidney:$("pKidney").value,target:$("pTarget").value?Number($("pTarget").value):null};if(editingId){let i=data.profiles.findIndex(p=>p.id===editingId);data.profiles[i]=obj}else{data.profiles.push(obj);data.active=obj.id}save();$("profileDialog").close();render()};
 $("targetBtn").onclick=()=>{$("newTarget").value=suggested(profile());$("targetDialog").showModal()};
 $("cancelTarget").onclick=()=>$("targetDialog").close();
 $("targetForm").onsubmit=e=>{e.preventDefault();profile().target=Number($("newTarget").value);save();$("targetDialog").close();render()};
