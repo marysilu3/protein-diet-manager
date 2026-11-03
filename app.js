@@ -46,7 +46,13 @@ const foods=[
 ["Curd rice","തൈര് ചോറ്","1 small bowl (200 g)",5,"Cooked rice mixed with curd; protein varies with the amount and thickness of curd."],
 ["Idiyappam with milk","പാലൊഴിച്ച ഇടിയപ്പം","1 serving",7,"Two small idiyappam with a serving of milk; estimate depends on milk quantity."],
 ["Avial","അവിയൽ","100 g",2.5,"Mixed vegetables with coconut and curd; generally a low-protein side dish."],
-["Olan","ഓലൻ","100 g",2,"Ash gourd and cowpeas cooked with coconut milk; protein depends on the quantity of cowpeas."]
+["Olan","ഓലൻ","100 g",2,"Ash gourd and cowpeas cooked with coconut milk; protein depends on the quantity of cowpeas."],
+["Appam","അപ്പം","1 medium",2,"Approximate value; protein varies with size and batter. Usually low in protein."],
+["Pathiri","പത്തിരി","1 medium",2,"Approximate value; protein varies with size and recipe. Usually low in protein."],
+["Mutton, cooked (lean pieces)","മട്ടൻ വേവിച്ചത്","100 g",25,"Approximate protein for edible cooked meat; remove bones before weighing. Actual value varies by cut and fat."],
+["Mutton curry (meat and gravy)","മട്ടൻ കറി","1 serving (about 150 g)",20,"Approximate value assuming a moderate portion of edible mutton pieces; gravy alone contains much less protein."],
+["Mutton soup (with meat pieces)","മട്ടൻ സൂപ്പ്","1 bowl (200 ml)",10,"Estimate assumes some cooked boneless mutton pieces in the soup; strained broth alone is much lower in protein."],
+["Whey protein powder","വേ പ്രോട്ടീൻ പൊടി","1 scoop (about 30 g)",24,"Illustrative estimate only. Check the product label because protein per scoop varies by brand. Use only after the treating doctor or dietitian confirms it is suitable, especially with kidney disease or post-surgery restrictions."]
 ];
 const $=id=>document.getElementById(id);
 const today=()=>new Date().toISOString().slice(0,10);
