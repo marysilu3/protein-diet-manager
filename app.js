@@ -60,10 +60,12 @@ if(data.profiles){
   if(p.height&&p.weight)p.bmi=Number((p.weight/((p.height/100)**2)).toFixed(1));
  });
  save();
-}\nlet editingId=null;
+}
+let editingId=null;
 function save(){localStorage.setItem("proteinManager",JSON.stringify(data))}
 function profile(){return data.profiles.find(p=>p.id===data.active)||data.profiles[0]}
-function bmi(p){return p.height>0&&p.weight>0? Number((p.weight/((p.height/100)**2)).toFixed(1)):null}\nfunction suggested(p){if(p.target)return Number(p.target);let rate=p.type==="recovery"?1.2:p.age>=65?1.0:0.8;return Math.round(p.weight*rate)}
+function bmi(p){return p.height>0&&p.weight>0? Number((p.weight/((p.height/100)**2)).toFixed(1)):null}
+function suggested(p){if(p.target)return Number(p.target);let rate=p.type==="recovery"?1.2:p.age>=65?1.0:0.8;return Math.round(p.weight*rate)}
 function key(){return `${data.active}_${today()}`}
 function entries(){return data.logs[key()]||[]}
 function total(){return entries().reduce((s,e)=>s+e.protein,0)}
